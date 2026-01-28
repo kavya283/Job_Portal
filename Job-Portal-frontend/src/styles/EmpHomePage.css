@@ -1,0 +1,223 @@
+.employer-dashboard {
+  position: relative;
+  min-height: 100vh;
+  background: var(--bg-page); 
+  display: flex;
+  justify-content: center;
+  transition: background 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Enhanced Background Layer */
+.employer-dashboard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Fix: Use a relative path instead of a local C:\ path */
+  background-image: url('../assets/hero-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  opacity: 0.1; /* Slightly higher for visibility */
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Dark Mode Background adjustment */
+body.dark .employer-dashboard::before {
+  opacity: 0.04;
+  filter: grayscale(100%) brightness(0.5);
+}
+
+/* ===========================
+   MAIN CONTENT
+========================== */
+
+.dashboard-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  padding: 40px 24px 60px;
+}
+
+.dashboard-content h1 {
+  text-align: center;
+  font-size: 36px; /* Enhanced font size */
+  font-weight: 800;
+  margin-bottom: 48px;
+  color: var(--text-main);
+  letter-spacing: -1px;
+}
+
+/* ===========================
+   STATS CARDS (Frosted UI)
+=========================== */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  margin-bottom: 54px;
+}
+
+.stat-card {
+  /* Frosted Glass Effect */
+  background: rgba(255, 255, 255, 0.7); 
+  backdrop-filter: blur(12px); 
+  border-radius: 24px;
+  padding: 40px 32px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark .stat-card {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  background: var(--bg-card);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card h3 {
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.stat-card p {
+  font-size: 42px; /* Increased for better emphasis */
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+/* ===========================
+   DATA SECTIONS
+=========================== */
+
+.data-section {
+  background: var(--bg-card);
+  border-radius: 28px;
+  padding: 36px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+}
+
+.data-section h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 28px;
+}
+
+/* ===========================
+   POST JOB BUTTON (Enhanced)
+=========================== */
+
+.primary-btn {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  border: none;
+  padding: 16px 28px;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+  transition: all 0.25s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.35);
+  filter: brightness(1.1);
+}
+
+/* ===========================
+   DATA CARDS
+=========================== */
+
+.data-card {
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 22px 26px;
+  margin-bottom: 18px;
+  background: var(--bg-card);
+  transition: all 0.2s ease;
+}
+
+.data-card:hover {
+  background: var(--bg-page);
+  border-color: var(--primary);
+  transform: scale(1.01);
+}
+
+.data-card h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 768px) {
+  .dashboard-content h1 {
+    font-size: 28px;
+  }
+  .stat-card {
+    padding: 30px 20px;
+  }
+  .data-section {
+    padding: 24px;
+  }
+}
+/* Status Pills */
+.status-pill {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.status-pill.open { background: #e3f9e5; color: #1f7a33; }
+.status-pill.closed { background: #ffebeb; color: #c92a2a; }
+
+/* Dashboard Buttons */
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.card-actions button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn-v:hover { background: #f0f7ff; color: #2563eb; }
+.btn-e:hover { background: #fffbeb; color: #d97706; }
+.btn-s:hover { background: #f9fafb; color: #4b5563; }
+.btn-d:hover { background: #fef2f2; color: #dc2626; border-color: #fecaca; }

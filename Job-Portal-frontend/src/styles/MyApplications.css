@@ -1,0 +1,153 @@
+/* --- GLOBAL THEME OVERRIDES --- */
+:root {
+  --bg: #f4f6f8;
+  --bg-rgb: 244, 246, 248;
+  --card: #ffffff;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --primary: #2563eb;
+}
+
+body.dark {
+  --bg: #0f172a; 
+  --bg-rgb: 15, 23, 42;
+  --card: #1e293b; 
+  --text: #f1f5f9; 
+  --text-muted: #94a3b8;
+  --border: #334155;
+}
+
+.master-page-wrapper {
+  min-height: 100vh;
+  transition: all 0.5s ease;
+  position: relative;
+  
+  /* Matches your Profile background logic */
+  background: linear-gradient(
+      to bottom,
+      rgba(var(--bg-rgb), 0.7), 
+      rgba(var(--bg-rgb), 0.85)
+    ),
+    url('../assets/background.jpg');
+
+  /* Fixes tiling and adds parallax effect */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+.master-page-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.05) 0%, transparent 40%),
+              radial-gradient(circle at 80% 70%, rgba(37, 99, 235, 0.05) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 0;
+}
+.applications-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1; /* Ensures content stays above background effects */
+}
+.centered-title {
+  color: var(--text);
+  margin-bottom: 40px;
+  font-weight: 800;
+  border-left: 6px solid var(--primary);
+  padding-left: 20px;
+}
+
+.application-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 20px;
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.application-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+}
+
+.app-info-group h3 {
+  color: var(--text);
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.app-info-group p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 4px 0;
+}
+
+.status-pill {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--primary);
+}
+
+.app-actions-group {
+  display: flex;
+  flex-direction: row; 
+  gap: 12px; 
+  align-items: center;
+}
+.action-btn {
+  display: flex;
+  align-items: center;
+  white-space: nowrap; 
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: 2px solid;
+}
+
+.action-btn.view {
+  background: rgba(80, 208, 161, 0.1); 
+  border-color: #50d0a1;
+  color: #50d0a1;
+}
+
+.action-btn.view:hover {
+  background: #50d0a1; 
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(80, 208, 161, 0.3);
+}
+
+.action-btn.delete {
+  background: rgba(231, 76, 96, 0.1);  
+  border-color: #e74c60; 
+  color: #e74c60; 
+}
+
+.action-btn.delete:hover {
+  background: #e74c60; 
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(231, 76, 96, 0.3);
+}
+
+.action-btn:active {
+  transform: scale(0.96);
+}

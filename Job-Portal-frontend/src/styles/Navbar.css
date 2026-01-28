@@ -1,0 +1,129 @@
+:root {
+  /* Default Light Mode Variables */
+  --bg-navbar: #ffffff;
+  --bg-dropdown: #ffffff;
+  --bg-hover: #f7fafc;
+  --text-main: #1a202c;
+  --text-muted: #718096;
+  --border-color: #e2e8f0;
+  --primary: #2563eb;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+body.dark {
+  /* Dark Mode Variables */
+  --bg-navbar: #1a202c;
+  --bg-dropdown: #1e293b;
+  --bg-hover: #2d3748;
+  --text-main: #f7fafc;
+  --text-muted: #a0aec0;
+  --border-color: #334155;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+.global-navbar {
+  background: var(--bg-navbar);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.8rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.profile-menu-container {
+  position: relative;
+}
+
+.profile-trigger {
+  background: var(--bg-hover);
+  border: 1px solid var(--border-color);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--text-main);
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+/* --- DROPDOWN --- */
+.profile-dropdown {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background: var(--bg-dropdown) !important;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  width: 220px;
+  padding: 8px 0;
+  z-index: 1001;
+  animation: slideDown 0.2s ease-out;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px 20px;
+  color: var(--text-main) !important; /* Visible in both modes */
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: right;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: var(--bg-hover);
+  color: var(--primary) !important;
+}
+
+.theme-item {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-main);
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: 8px 0;
+}
+
+/* --- Logout Specifics --- */
+.logout {
+  color: #ef4444 !important;
+}
+
+.logout:hover {
+  background: rgba(239, 68, 68, 0.1) !important;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

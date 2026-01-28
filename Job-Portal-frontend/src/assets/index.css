@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+:root {
+    --bg: #f4f6f8;
+    --bg-rgb: 244, 246, 248;
+    --card: #ffffff;
+    --text: #111111;
+    --text-muted: #64748b;
+    --primary: #057638;
+    --primary-rgb: 5, 118, 56;
+    --social-hover: #f1f3f5;
+    --border: #e0e0e0;
+    --input-bg: #ffffff;
+    --shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+body.dark {
+    --bg: #0f172a;
+    --bg-rgb: 15, 23, 42;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --primary: #38bdf8;
+    --primary-rgb: 56, 189, 248;
+    --social-hover: #334155;
+    --border: #334155;
+    --input-bg: #1e293b;
+    --shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--bg-rgb), 0.75), 
+        rgba(var(--bg-rgb), 0.9)
+    ),
+    url('../assets/background.jpg');
+    background-size: cover;       
+    background-position: center;  
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
+}
+
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.custom-card {
+    background: var(--card);
+    width: 100%;
+    max-width: 450px;
+    padding: 3rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.custom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.social-btn {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--card); 
+    border: 1px solid var(--border);
+    border-radius: 0.6rem;
+    font-weight: 500;
+    color: var(--text); 
+    transition: all 0.3s;
+    cursor: pointer;
+    text-align: center;
+}
+
+.social-btn:hover {
+    background-color: var(--social-hover);
+    border-color: var(--primary);
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 1.5rem 0;
+    color: var(--text-muted); 
+}    
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid var(--border);
+}
+
+.divider span {
+    padding: 0 1rem;
+    font-size: 0.9rem;
+    white-space: nowrap !important;
+    text-transform: none;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.6rem;
+    outline: none;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s;
+    background: var(--input-bg); 
+    color: var(--text);
+}
+
+.form-input::placeholder {
+    color: var(--text-muted);
+}
+
+.form-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.2); 
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: var(--primary);
+    color: #ffffff; 
+    border: none;
+    border-radius: 0.6rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.master-page-wrapper {
+    min-height: 100vh;
+    background-color: var(--bg);
+    transition: background-color 0.3s ease;
+}
+
+.custom-master-card {
+    background: var(--card);
+    border-radius: 1.2rem;
+    overflow: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-heading {
+    color: var(--text);
+}
+
+/* Custom Outline Button */
+.secondary-btn-outline {
+    width: 100%;
+    padding: 0.85rem;
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 0.6rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.secondary-btn-outline:hover {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+@media (max-width: 480px) {
+    .custom-card {
+        padding: 2rem 1.5rem;
+    }
+}
+.login-wrapper, 
+.candidate-profile-container, 
+.master-page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    position: relative;
+    z-index: 1; 
+}
+
+.custom-card, 
+.profile-card, 
+.custom-master-card {
+    background: var(--card);
+    width: 100%;
+    border-radius: 1.2rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    position: relative;
+    z-index: 2;
+}

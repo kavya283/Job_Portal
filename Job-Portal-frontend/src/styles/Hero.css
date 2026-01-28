@@ -1,0 +1,54 @@
+.hero-search {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* INPUT WITH ICON */
+  .input-icon {
+    position: relative;
+  }
+  
+  .input-icon input {
+    padding: 10px 10px 10px 35px;
+    width: 220px;
+  }
+  
+  .input-icon .icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: gray;
+  }
+  
+  /* SELECT WITH ICON */
+  .select-icon {
+    position: relative;
+    width: 220px;
+  }
+  
+  .select-icon .icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    z-index: 10;
+    transform: translateY(-50%);
+    color: gray;
+  }
+  
+  /* react-select input padding fix */
+  .react-select__control {
+    padding-left: 25px;
+    min-height: 42px;
+  }
+  
+  .search-btn {
+    padding: 10px 18px;
+    background: #4aa3a3;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  

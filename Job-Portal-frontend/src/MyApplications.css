@@ -1,0 +1,117 @@
+/* --- GLOBAL THEME OVERRIDES (Add to index.css or top of this file) --- */
+:root {
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --text: #111111;
+  --border: #e0e0e0;
+}
+
+/* This triggers when Navbar adds 'dark' class to body */
+body.dark {
+  --bg: #0f172a; /* Dark Navy Background */
+  --card: #1e293b; /* Darker Card Background */
+  --text: #f1f5f9; /* Near-white text for visibility */
+  --border: #334155;
+}
+
+/* --- MASTERPAGE BACKGROUND FIX --- */
+/* Use this class on the wrapper div in Masterpage.jsx */
+.master-page-wrapper {
+  background-color: var(--bg) !important;
+  transition: background-color 0.3s ease;
+  min-height: 100vh;
+}
+
+/* --- APPLICATIONS PAGE STYLES --- */
+.applications-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  background-color: var(--bg);
+  min-height: 100vh;
+}
+
+.centered-title {
+  font-size: 28px;
+  color: var(--text);
+  margin-bottom: 30px;
+  font-weight: 800;
+  border-left: 5px solid #2563eb;
+  padding-left: 15px;
+}
+
+.application-card {
+  background: var(--card) !important; /* Force card to change color */
+  padding: 30px;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border);
+  transition: transform 0.2s ease;
+}
+
+.app-info-group h3 {
+  font-size: 22px;
+  color: var(--text); /* Fixes invisible text in Dark Mode */
+}
+
+.app-info-group p {
+  color: var(--text);
+  opacity: 0.8;
+}
+
+.app-actions {
+  display: flex;
+  flex-direction: row; 
+  gap: 12px;
+  align-items: center;
+}
+
+.action-btn {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #ffffff !important; /* Always white text for contrast on colors */
+}
+
+/* VIEW RESUME BUTTON (Solid Green) */
+.action-btn.view {
+  background: #166534 !important; 
+  border: 1px solid #14532d;
+}
+
+.action-btn.view:hover {
+  background: #15803d;
+  transform: scale(1.05);
+}
+
+/* WITHDRAW BUTTON (Solid Red) */
+.action-btn.delete {
+  background: #dc2626 !important; 
+  border: 1px solid #991b1b;
+}
+
+.action-btn.delete:hover {
+  background: #b91c1c;
+  transform: scale(1.05);
+}
+
+.status-pill {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
