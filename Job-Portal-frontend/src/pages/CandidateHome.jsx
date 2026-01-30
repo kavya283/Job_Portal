@@ -9,8 +9,6 @@ const CandidateHome = () => {
   const [profile, setProfile] = useState(null);
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // Helper function to check if profile is truly complete
   const isProfileComplete = (prof) => {
   return !!(prof && prof.name && prof.email && prof.skills);
   };
@@ -18,15 +16,11 @@ const CandidateHome = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        // Fetching profile and jobs in parallel
         const [profRes, jobsRes] = await Promise.all([
           api.get("/candidate/me"),
           api.get("/jobs/latest"), 
         ]);
-
         setProfile(profRes.data);
-        
-        // Ensure we set an array even if the response is null/undefined
         setJobs(jobsRes.data || []);
       } catch (err) {
         console.error("Dashboard failed to load:", err.response?.data || err.message);
@@ -34,19 +28,15 @@ const CandidateHome = () => {
         setLoading(false);
       }
     };
-
     loadData();
 
-    // Real-time update logic
     socket.on("jobPosted", (newJob) => {
       setJobs((prev) => {
-        // Prevent duplicate jobs if the socket and API fire simultaneously
         const exists = prev.find(j => j._id === newJob._id);
         if (exists) return prev;
         return [newJob, ...prev].slice(0, 10);
       });
     });
-
     return () => socket.off("jobPosted");
   }, []);
 
@@ -67,36 +57,23 @@ const CandidateHome = () => {
           <header className="content-header">
             <h1>Candidate Dashboard</h1>
           </header>
-
-          {/* ===== STATS ===== */}
           <div className="stats-grid">
             <div className="stat-card">
               <h3>Profile Status</h3>
-              {/* Logic Fix: Check for specific fields, not just the object existence */}
               <p className={`status-badge ${isProfileComplete(profile) ? "complete" : "incomplete"}`}>
                 {isProfileComplete(profile) ? "✅ Complete" : "❌ Incomplete"}
               </p>
             </div>
-
             <div className="stat-card">
               <h3>Available Jobs</h3>
-              {/* This will now dynamically update based on the jobs state */}
               <p className="stat-number">{jobs.length}</p>
             </div>
           </div>
-
-          {/* ===== LATEST JOBS ===== */}
           <section className="data-section">
             <div className="section-header">
               <h2>Latest Opportunities</h2>
-              <button
-                className="text-link"
-                onClick={() => navigate("/candidate/jobs")}
-              >
-                View all
-              </button>
+              <button className="text-link" onClick={() => navigate("/candidate/jobs")} > View all </button>
             </div>
-
             {jobs.length === 0 ? (
               <div className="empty-state-card">
                 <p>No new jobs posted recently. Check back soon!</p>
@@ -114,12 +91,7 @@ const CandidateHome = () => {
                         {" • "}{job.location}
                       </p>
                     </div>
-                    <button
-                      className="apply-btn-sm"
-                      onClick={() => navigate(`/jobs/${job._id}`)}
-                    >
-                      View Details
-                    </button>
+                    <button className="apply-btn-sm" onClick={() => navigate(`/jobs/${job._id}`)} > View Details </button>
                   </div>
                 ))}
               </div>

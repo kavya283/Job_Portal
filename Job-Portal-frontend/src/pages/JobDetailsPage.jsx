@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import api from "../api/axios"; 
-import "../styles/JobDetails.css"; // Ensure you have a dedicated CSS or update CandidateHome.css
+import "../styles/JobDetails.css"; 
 
 const JobDetailsPage = () => {
   const { id } = useParams();
@@ -33,7 +33,6 @@ const JobDetailsPage = () => {
     if (!job || !job._id) return;
     try {
       setApplying(true);
-      // Ensure your Application model matches this structure
       const applicationData = { jobId: job._id, resume: "Placeholder Resume Link" };
       const response = await api.post("/applications", applicationData);
       if (response.status === 201) alert("✅ Application submitted successfully!");
@@ -62,21 +61,16 @@ const JobDetailsPage = () => {
             </div>
             <span className={`status-pill ${job.status}`}>{job.status}</span>
           </header>
-
           <div className="job-tags">
             <span>📍 {job.location}</span>
             <span>💼 {job.role || "Full-Time"}</span>
             <span>💰 Rs.{job.salaryMin?.toLocaleString()} - {job.salaryMax ? `Rs.${job.salaryMax.toLocaleString()}` : 'Negotiable'}</span>
           </div>
-
           <hr className="divider" />
-
           <section className="detail-section">
             <h3>Description</h3>
             <p className="description-text">{job.description}</p>
           </section>
-
-          {/* RESPONSIBILITIES: Rendered as a list if line breaks exist */}
           {job.responsibilities && (
             <section className="detail-section">
               <h3>Key Responsibilities</h3>
@@ -87,8 +81,6 @@ const JobDetailsPage = () => {
               </ul>
             </section>
           )}
-
-          {/* QUALIFICATIONS: Rendered as a list */}
           {job.qualifications && (
             <section className="detail-section">
               <h3>What We're Looking For</h3>
@@ -99,13 +91,11 @@ const JobDetailsPage = () => {
               </ul>
             </section>
           )}
-          
           <div className="action-footer">
             <button 
               className="apply-now-btn" 
               onClick={handleApply}
-              disabled={applying || job.status === 'closed'}
-            >
+              disabled={applying || job.status === 'closed'} >
               {applying ? "Submitting..." : job.status === 'closed' ? "Job Closed" : "Apply for this Position"}
             </button>
           </div>

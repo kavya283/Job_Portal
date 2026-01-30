@@ -1,4 +1,3 @@
-// pages/LoginSuccess.jsx
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +9,7 @@ const LoginSuccess = () => {
     const token = params.get("token");
     if (token) {
       localStorage.setItem("token", token);
-      navigate("/"); // Redirect to the main page
+      navigate("/"); 
     }
   }, [navigate]);
 

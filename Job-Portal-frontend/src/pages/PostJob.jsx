@@ -6,10 +6,7 @@ import "../styles/PostJob.css";
 const PostJob = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  
-  // Updated to match the "editJob" key from MyJobs.jsx
   const editingJob = state?.editJob || state?.job;
-
   const [job, setJob] = useState({
     title: "",
     role: "",
@@ -19,14 +16,12 @@ const PostJob = () => {
     description: "",
     qualifications: "",
     responsibilities: "",
-    status: "open" // Default status
+    status: "open" 
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   useEffect(() => {
     if (editingJob) {
-      // We set the state with existing job data if we are in "Edit Mode"
       setJob({
         ...editingJob,
         salaryMin: editingJob.salaryMin || "",
@@ -34,17 +29,13 @@ const PostJob = () => {
       });
     }
   }, [editingJob]);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setJob((prev) => ({ ...prev, [name]: value }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Prepare data (clean up numbers)
     const payload = {
       ...job,
       salaryMin: job.salaryMin ? Number(job.salaryMin) : null,
@@ -53,16 +44,12 @@ const PostJob = () => {
 
     try {
       if (editingJob) {
-        // PUT request for updates
         await api.put(`/jobs/${editingJob._id}`, payload);
         alert("Job updated successfully!");
       } else {
-        // POST request for new listings
         await api.post("/jobs", payload);
         alert("Job posted successfully!");
       }
-      
-      // Redirect to dashboard
       navigate("/employer/home"); 
     } catch (err) {
       console.error("Submission Error:", err);
@@ -79,7 +66,6 @@ const PostJob = () => {
         <h2 className="form-title">
           {editingJob ? "Edit Job Details" : "Create New Job Listing"}
         </h2>
-        
         <form onSubmit={handleSubmit} className="modern-form">
           <div className="form-group">
             <label>Position Title</label>
@@ -91,7 +77,6 @@ const PostJob = () => {
               required 
             />
           </div>
-          
           <div className="form-row">
             <div className="form-group">
               <label>Role Category</label>
@@ -113,7 +98,6 @@ const PostJob = () => {
               />
             </div>
           </div>
-
           <div className="form-row">
             <div className="form-group">
               <label>Min Salary</label>
@@ -136,7 +120,6 @@ const PostJob = () => {
               />
             </div>
           </div>
-
           <div className="form-group">
             <label>General Description</label>
             <textarea 
@@ -147,7 +130,6 @@ const PostJob = () => {
               required 
             />
           </div>
-
           <div className="form-group">
             <label>Key Responsibilities</label>
             <textarea 
@@ -158,7 +140,6 @@ const PostJob = () => {
               rows="4" 
             />
           </div>
-
           <div className="form-group">
             <label>Required Qualifications</label>
             <textarea 
@@ -169,12 +150,7 @@ const PostJob = () => {
               rows="4" 
             />
           </div>
-
-          <button 
-            type="submit" 
-            className="submit-btn" 
-            disabled={isSubmitting}
-          >
+          <button type="submit" className="submit-btn" disabled={isSubmitting}>
             {isSubmitting ? "Processing..." : editingJob ? "Update Listing" : "Post Opportunity"}
           </button>
         </form>

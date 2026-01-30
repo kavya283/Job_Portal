@@ -1,23 +1,18 @@
 .employer-profile-page {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  display: flex; /* Establishes the flex context */
+  justify-content: center; /* Centers the card horizontally */
+  align-items: flex-start; /* Keeps it at the top with your 50px padding */
+  width: 100%; /* Ensures the container spans the full screen width */
   padding: 50px 20px;
-  font-family: "Poppins", sans-serif; 
-  transition: all 0.5s ease;
-  position: relative;
-  overflow: hidden;
   background: linear-gradient(
       to bottom,
       rgba(var(--bg-rgb), 0.75), 
       rgba(var(--bg-rgb), 0.9)
     ),
-    url('../assets/background.jpg');
+    url('../assets/background-light.jpg'); 
   background-size: cover;
   background-position: center;
   background-attachment: fixed; 
-  background-repeat: no-repeat;
 }
 
 body.dark .employer-profile-page {
@@ -26,9 +21,8 @@ body.dark .employer-profile-page {
       rgba(var(--bg-rgb), 0.8), 
       rgba(var(--bg-rgb), 0.95)
     ),
-    url('../assets/background.jpg');
+    url('../assets/background-dark.jpg'); 
 }
-
 .profile-card {
   background: var(--card);
   width: 100%;

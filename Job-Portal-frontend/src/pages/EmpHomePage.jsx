@@ -4,8 +4,6 @@ import socket from "../socket";
 import api from "../api/axios";
 import "../styles/EmpHomePage.css";
 
-// ... imports stay the same
-
 const EmpHomePage = () => {
   const navigate = useNavigate();
   const [jobs, setJobs] = useState([]);
@@ -17,18 +15,14 @@ const EmpHomePage = () => {
     try {
       setLoading(true);
       setError(null);
-
       const [jobsRes, appsRes] = await Promise.all([
         api.get("/jobs/my-jobs"),
         api.get("/jobs/applicants")
       ]);
-
-      // Added defensive check for data structure
       setJobs(Array.isArray(jobsRes.data) ? jobsRes.data : []);
       setApplications(Array.isArray(appsRes.data) ? appsRes.data : []);
     } catch (err) {
       console.error("Dashboard Fetch Error:", err);
-      // Enhanced error messaging
       if (err.response?.status === 401 || err.response?.status === 403) {
         setError("Session expired. Please log in again.");
       } else {
@@ -38,20 +32,15 @@ const EmpHomePage = () => {
       setLoading(false);
     }
   }, []);
-
   useEffect(() => {
     fetchDashboard();
-
     socket.on("jobPosted", (job) => setJobs((prev) => [job, ...prev]));
     socket.on("newApplication", (app) => setApplications((prev) => [app, ...prev]));
-
     return () => {
       socket.off("jobPosted");
       socket.off("newApplication");
     };
   }, [fetchDashboard]);
-
-  // ... Loading and Error blocks stay the same
 
   return (
     <div className="employer-dashboard no-sidebar">
@@ -59,7 +48,6 @@ const EmpHomePage = () => {
         <header className="dashboard-header">
           <h1 className="dashboard-title">Employer Dashboard</h1>
         </header>
-
         <div className="stats-grid">
           <div className="stat-card">
             <span className="stat-label">JOBS POSTED</span>
@@ -70,13 +58,12 @@ const EmpHomePage = () => {
             <p className="stat-value">{applications.length}</p>
           </div>
         </div>
-
         <section className="data-section">
           <div className="section-header">
             <h2>My Posted Jobs</h2>
             <button 
               className="primary-btn" 
-              onClick={() => navigate("/employer/post-job")} // Corrected route
+              onClick={() => navigate("/employer/post-job")} 
             >
               ➕ Post Job
             </button>
@@ -89,7 +76,7 @@ const EmpHomePage = () => {
                 <div 
                   className="data-card clickable" 
                   key={job._id}
-                  onClick={() => navigate("/employer/my-jobs")} // Corrected route
+                  onClick={() => navigate("/employer/my-jobs")} 
                 >
                   <h4>{job.title}</h4>
                   <p className="muted">📍 {job.location || "Remote"}</p>
@@ -98,7 +85,6 @@ const EmpHomePage = () => {
             </div>
           )}
         </section>
-
         <section className="data-section">
           <h2>Recent Applications</h2>
           {applications.length === 0 ? (

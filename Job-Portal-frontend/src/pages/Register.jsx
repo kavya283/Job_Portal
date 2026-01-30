@@ -8,7 +8,6 @@ function Register() {
     email: "",
     password: "",
   });
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     await API.post("/auth/register", form);
@@ -19,7 +18,6 @@ function Register() {
     <div className="auth-wrapper blue">
       <form className="auth-box" onSubmit={handleSubmit}>
         <h2>Welcome!</h2>
-
         <input
           placeholder="Your name"
           onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -33,7 +31,6 @@ function Register() {
           placeholder="Create password"
           onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
-
         <button>Create account</button>
       </form>
     </div>

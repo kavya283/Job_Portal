@@ -6,14 +6,10 @@ const CandidateJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
-  /* =========================
-     Fetch all latest jobs
-     ========================= */
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await api.get("/jobs/search"); // public route
+        const res = await api.get("/jobs/search"); 
         setJobs(res.data);
       } catch (err) {
         console.error(err);
@@ -22,14 +18,12 @@ const CandidateJobs = () => {
         setLoading(false);
       }
     };
-
     fetchJobs();
   }, []);
 
   if (loading) {
     return <p style={{ textAlign: "center" }}>Loading jobs...</p>;
   }
-
   if (error) {
     return <p style={{ textAlign: "center", color: "red" }}>{error}</p>;
   }
@@ -37,7 +31,6 @@ const CandidateJobs = () => {
   return (
     <div className="candidate-jobs-page">
       <h1>💼 Available Jobs</h1>
-
       {jobs.length === 0 ? (
         <p>No jobs available at the moment</p>
       ) : (
@@ -51,7 +44,6 @@ const CandidateJobs = () => {
               <p className="job-desc">
                 {job.description?.slice(0, 120)}...
               </p>
-
               <button className="apply-btn">
                 Apply Now
               </button>

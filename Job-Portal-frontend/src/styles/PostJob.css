@@ -19,16 +19,22 @@
   background-repeat: no-repeat;
 }
 body.dark .post-job-wrapper {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(
+      135deg, 
+      rgba(15, 23, 42, 0.9) 0%, 
+      rgba(30, 41, 59, 0.95) 100%
+    ),
+    url('../assets/background.jpg'); 
+    background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
-
 .post-job-card {
   background: var(--card);
   padding: 40px;
   border-radius: 20px;
   width: 100%;
   max-width: 650px;
-  /* Increased shadow depth to stand out against the background image */
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
   transition: background 0.3s ease, transform 0.3s ease;
   border: 1px solid var(--border);

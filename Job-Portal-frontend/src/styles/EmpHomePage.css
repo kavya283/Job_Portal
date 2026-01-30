@@ -17,7 +17,7 @@
   width: 100%;
   height: 100%;
   /* Fix: Use a relative path instead of a local C:\ path */
-  background-image: url('../assets/hero-bg.png');
+  background-image: url('../assets/background.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

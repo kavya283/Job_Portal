@@ -12,13 +12,10 @@ const CandidateProfile = () => {
   });
   const [resumeFile, setResumeFile] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-
-  // 1. Fetch profile data on component load
   useEffect(() => {
     api.get("/candidate/me") 
       .then(res => {
         if (res.data) {
-          // If skills come as an array from backend, join them for the input field
           const formattedData = {
             ...res.data,
             skills: Array.isArray(res.data.skills) ? res.data.skills.join(", ") : res.data.skills
@@ -30,21 +27,15 @@ const CandidateProfile = () => {
         console.log("No profile found or connection issue:", err.message);
       });
   }, []);
-
   const handleChange = (e) => {
     setProfile({ ...profile, [e.target.name]: e.target.value });
   };
-
-  // 3. Handle multipart form data submission
   const handleSave = async () => {
-    // Basic Validation: Ensure "Incomplete" status can actually change
     if (!profile.name || !profile.skills) {
       alert("Please fill in at least your Name and Skills to complete your profile.");
       return;
     }
-
     const formData = new FormData();
-    
     Object.keys(profile).forEach(key => {
       if (key !== "_id" && key !== "__v" && key !== "resumePath") {
         formData.append(key, profile[key] || "");
@@ -59,8 +50,6 @@ const CandidateProfile = () => {
       const res = await api.put("/candidate/profile", formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
-      
-      // Update state with returned profile
       const updatedProfile = res.data.profile || res.data;
       setProfile({
         ...updatedProfile,
@@ -68,10 +57,7 @@ const CandidateProfile = () => {
       });
       
       setIsEditing(false);
-      alert("Profile Updated Successfully! Your dashboard status will now update.");
-      
-      // Optional: Force a window reload if your dashboard state isn't global
-      // window.location.reload(); 
+      alert("Profile Updated Successfully! Your dashboard status will now update."); 
       
     } catch (err) {
       console.error("Update Error:", err.response?.data || err.message);
@@ -84,7 +70,7 @@ const CandidateProfile = () => {
       <div className="profile-card">
         <h1>👤 My Profile</h1>
         <p className="subtitle">Manage your personal and professional presence</p>
-
+        
         <div className="form-section">
           <h3>Personal Details</h3>
           <div className="two-column">

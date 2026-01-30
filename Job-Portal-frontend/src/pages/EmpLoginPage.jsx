@@ -6,9 +6,8 @@ import "../assets/index.css";
 const EmpLoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false); // Prevent double-clicks
+  const [isSubmitting, setIsSubmitting] = useState(false); 
   const navigate = useNavigate();
-
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -17,21 +16,15 @@ const EmpLoginPage = () => {
       const res = await api.post("/auth/login", {
         email,
         password,
-        role: "employer", // Explicitly requesting employer access
+        role: "employer", 
       });
 
       const { token, user } = res.data;
-
-      // 1. Store auth data
       localStorage.setItem("token", token);
       localStorage.setItem("role", user.role);
       localStorage.setItem("user", JSON.stringify(user));
 
-      // 2. IMPORTANT: Update the Authorization header for immediate use
-      // This prevents the "Initial 401" on the very first dashboard load
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
-      // 3. Redirect to the dashboard
       navigate("/employer/home");
     } catch (error) {
       console.error("Login Error:", error);
@@ -46,9 +39,7 @@ const EmpLoginPage = () => {
     <div className="login-wrapper">
       <div className="custom-card">
         <h2 className="text-center mb-4">Employer Login</h2>
-        
-        {/* Social Auth Buttons */}
-        <div className="d-flex flex-column gap-2 mb-3">
+                <div className="d-flex flex-column gap-2 mb-3">
           <a href="http://localhost:5000/api/auth/google" className="social-btn text-center text-decoration-none">
             <i className="bi bi-google"></i> Google
           </a>
@@ -56,9 +47,7 @@ const EmpLoginPage = () => {
             <i className="bi bi-linkedin"></i> LinkedIn
           </a>
         </div>
-
         <div className="divider"><span>Or continue with email</span></div>
-
         <form onSubmit={handleLogin}>
           <input 
             type="email" 
@@ -86,7 +75,6 @@ const EmpLoginPage = () => {
             {isSubmitting ? "Logging in..." : "Log in"}
           </button>
         </form>
-
         <p className="text-center mt-4 mb-0">
           Don't have an account? 
           <Link to="/empsignup" className="fw-bold text-decoration-none ms-1">

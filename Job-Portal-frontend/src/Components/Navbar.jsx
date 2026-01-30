@@ -8,7 +8,6 @@ const Navbar = () => {
     localStorage.getItem("theme") === "dark"
   );
   
-  // Get role from localStorage (set this during your login process)
   const role = localStorage.getItem("role"); 
   const navigate = useNavigate();
 
@@ -23,12 +22,12 @@ const Navbar = () => {
   }, [isDarkMode]);
 
   const handleLogout = () => {
-    localStorage.clear(); // Clears token and role
+    localStorage.clear(); 
     navigate("/");
   };
 
   const toggleTheme = (e) => {
-    e.stopPropagation(); // Prevents dropdown from closing immediately
+    e.stopPropagation(); 
     setIsDarkMode(!isDarkMode);
   };
 
@@ -50,7 +49,6 @@ const Navbar = () => {
 
             {showDropdown && (
               <div className="profile-dropdown" onMouseLeave={() => setShowDropdown(false)}>
-                {/* Dynamic Menu Based on Role */}
                 {role === "candidate" ? (
                   <>
                     <Link to="/candidate-home" className="dropdown-item">Dashboard</Link>
@@ -68,8 +66,6 @@ const Navbar = () => {
                 )}
 
                 <div className="dropdown-divider"></div>
-                
-                {/* Theme Toggle Inside Dropdown */}
                 <div className="dropdown-item theme-item" onClick={toggleTheme}>
                   <span>{isDarkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}</span>
                 </div>

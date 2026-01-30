@@ -5,7 +5,6 @@ import "../styles/MyApplications.css";
 const MyApplications = () => {
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const fetchApplications = async () => {
     try {
       const res = await api.get("/applications/my");
@@ -18,7 +17,6 @@ const MyApplications = () => {
   };
 
   useEffect(() => { fetchApplications(); }, []);
-
   const handleViewResume = (resumePath) => {
     if (!resumePath) return alert("No resume uploaded.");
     const backendBaseUrl = "http://localhost:5000";
@@ -26,7 +24,6 @@ const MyApplications = () => {
     const fileUrl = `${backendBaseUrl}/uploads/${fileName}`;
     window.open(fileUrl, "_blank");
   };
-
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to withdraw this application?")) {
       try {
@@ -38,11 +35,9 @@ const MyApplications = () => {
       }
     }
   };
-
   if (loading) return <div className="loading-state">Loading...</div>;
 
   return (
-    /* Wrap in master-page-wrapper to enable global theme background */
     <div className="master-page-wrapper">
       <div className="applications-container">
         <h1 className="centered-title">My Applications</h1>
@@ -62,7 +57,6 @@ const MyApplications = () => {
                     {app.status || 'Applied'}
                   </div>
                 </div>
-
                 <div className="app-actions-group">
                   <button className="action-btn view" onClick={() => handleViewResume(app.resume)}>
                     📄 View Resume

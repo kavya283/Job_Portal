@@ -14,7 +14,6 @@ const JobListing = () => {
       console.error(err);
     }
   };
-
   useEffect(() => {
     fetchJobs();
   }, []);

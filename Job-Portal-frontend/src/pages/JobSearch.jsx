@@ -12,8 +12,6 @@ const JobSearch = () => {
     location: "",
     minSalary: "",
   });
-
-  // Dark Mode Toggle Logic
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add("dark");
@@ -21,7 +19,6 @@ const JobSearch = () => {
       document.body.classList.remove("dark");
     }
   }, [darkMode]);
-
   const fetchJobs = async () => {
     setLoading(true);
     try {
@@ -34,7 +31,6 @@ const JobSearch = () => {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     const timer = setTimeout(fetchJobs, 400);
     return () => clearTimeout(timer);
@@ -42,7 +38,6 @@ const JobSearch = () => {
 
   return (
     <div className="job-search-page">
-      {/* Theme Toggle Button */}
       <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)}>
         {darkMode ? "☀️" : "🌙"}
       </button>
@@ -50,7 +45,6 @@ const JobSearch = () => {
       <div className="search-header-bg">
         <h1>Find Your Next Career Move</h1>
         <p>Discover opportunities from top companies worldwide</p>
-        
         <div className="search-filter-card">
           <div className="input-with-icon">
             <span className="icon">🔍</span>
@@ -63,7 +57,6 @@ const JobSearch = () => {
           </div>
 
           <div className="v-divider"></div>
-
           <div className="input-with-icon">
             <span className="icon">📍</span>
             <input
@@ -73,9 +66,7 @@ const JobSearch = () => {
               onChange={(e) => setFilters({ ...filters, location: e.target.value })}
             />
           </div>
-
           <div className="v-divider"></div>
-
           <div className="input-with-icon">
             <span className="icon">💰</span>
             <input
@@ -85,7 +76,6 @@ const JobSearch = () => {
               onChange={(e) => setFilters({ ...filters, minSalary: e.target.value })}
             />
           </div>
-
           <button className="search-action-btn" onClick={fetchJobs}>Search</button>
         </div>
       </div>

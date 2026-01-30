@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import api from "../api/axios";
 import "../styles/EmployerProfile.css";
 
-
 const EmployerProfile = () => {
   const [profile, setProfile] = useState({
     companyName: "",
@@ -12,19 +11,15 @@ const EmployerProfile = () => {
     industry: "",
     description: "",
   });
-
   const [isEditing, setIsEditing] = useState(false);
-
   useEffect(() => {
     api.get("/employer/profile").then((res) => {
       if (res.data) setProfile(res.data);
     });
   }, []);
-
   const handleChange = (e) => {
     setProfile({ ...profile, [e.target.name]: e.target.value });
   };
-
   const handleSave = async () => {
     await api.put("/employer/profile", profile);
     setIsEditing(false);
@@ -37,8 +32,6 @@ const EmployerProfile = () => {
         <p className="subtitle">
           Manage your company information visible to candidates
         </p>
-
-        {/* Company Info */}
         <div className="form-section">
           <h3>Company Details</h3>
 
@@ -52,7 +45,6 @@ const EmployerProfile = () => {
               disabled={!isEditing}
             />
           </div>
-
           <div className="form-group">
             <label>Industry</label>
             <input
@@ -64,11 +56,8 @@ const EmployerProfile = () => {
             />
           </div>
         </div>
-
-        {/* Contact Info */}
         <div className="form-section">
           <h3>Contact Information</h3>
-
           <div className="two-column">
             <div className="form-group">
               <label>Email</label>
@@ -81,7 +70,6 @@ const EmployerProfile = () => {
                 disabled={!isEditing}
               />
             </div>
-
             <div className="form-group">
               <label>Phone</label>
               <input
@@ -93,7 +81,6 @@ const EmployerProfile = () => {
               />
             </div>
           </div>
-
           <div className="form-group">
             <label>Website</label>
             <input
@@ -105,8 +92,6 @@ const EmployerProfile = () => {
             />
           </div>
         </div>
-
-        {/* About */}
         <div className="form-section">
           <h3>About Company</h3>
           <div className="form-group">
@@ -121,8 +106,6 @@ const EmployerProfile = () => {
             />
           </div>
         </div>
-
-        {/* Actions */}
         <div className="profile-actions">
           <button
             className="edit-btn"
@@ -130,7 +113,6 @@ const EmployerProfile = () => {
           >
             {isEditing ? "Cancel" : "Edit Profile"}
           </button>
-
           {isEditing && (
             <button className="save-btn" onClick={handleSave}>
               Save Changes

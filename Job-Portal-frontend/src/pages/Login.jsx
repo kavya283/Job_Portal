@@ -11,20 +11,16 @@ function Login() {
       const res = await API.post("/auth/login", form);
       localStorage.setItem("token", res.data.token);
       alert("Login Success");
-      // window.location.href = "/dashboard"; // Redirect after local login
     } catch (err) {
       alert("Login failed: " + err.response?.data?.msg);
     }
   };
 
-  // --- Social Login Handlers ---
   const handleGoogleLogin = () => {
-    // Redirects browser to the backend OAuth entry point
     window.location.href = "http://localhost:5000/api/auth/google";
   };
 
   const handleLinkedInLogin = () => {
-    // Redirects browser to the backend LinkedIn entry point
     window.location.href = "http://localhost:5000/api/auth/linkedin";
   };
 
@@ -48,8 +44,6 @@ function Login() {
         <div className="social-login-separator">
           <span>OR</span>
         </div>
-
-        {/* Social Buttons */}
         <div className="social-buttons">
           <button 
             type="button" 
